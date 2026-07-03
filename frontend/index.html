@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trustworthy AI Credit Decision Engine - IDB Innovate</title>
+  <meta name="description" content="AI Underwriting Companion &amp; Financial Health Card for MSME lending. An explainable, multi-source credit decision-support system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header" id="main-header">
+      <div class="header-logo-section">
+        <div class="logo-glow"></div>
+        <svg class="app-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">
+          <h1>VALKYRIE <span class="accent-text">RISK INTEL</span></h1>
+          <span class="sub-logo">Trustworthy AI Underwriting Companion</span>
+        </div>
+      </div>
+      <div class="header-metadata">
+        <div class="meta-badge pulse-badge">
+          <span class="badge-dot"></span>
+          <span id="backend-status-text">CONNECTING BACKEND...</span>
+        </div>
+        <div class="meta-badge-purple">
+          <span>TRACK 3: MSME INCLUSION</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-layout">
+      
+      <!-- LEFT SIDEBAR: PROFILE SELECTOR & SANDBOX CONTROLS -->
+      <section class="sidebar-panel" aria-label="Profile Simulator Controls">
+        <div class="panel-header">
+          <h2>MSME Profile Sandbox</h2>
+          <p class="panel-subtitle">Select a preset case study or customize inputs in real time</p>
+        </div>
+
+        <!-- Presets Selection Grid -->
+        <div class="presets-container">
+          <label class="section-label">SELECT HACKATHON CASE STUDY</label>
+          <div class="presets-grid">
+            <button class="preset-btn active" id="preset-invisible" data-preset="invisible">
+              <span class="preset-title">1. Invisible Weaver</span>
+              <span class="preset-badge badge-green">No CIBIL / High GST</span>
+            </button>
+            <button class="preset-btn" id="preset-silent" data-preset="silent">
+              <span class="preset-title">2. Silent Decay</span>
+              <span class="preset-badge badge-red">CIBIL 770 / Drop</span>
+            </button>
+            <button class="preset-btn" id="preset-volatile" data-preset="volatile">
+              <span class="preset-title">3. Volatile AgTech</span>
+              <span class="preset-badge badge-purple">Season / Erratic</span>
+            </button>
+            <button class="preset-btn" id="preset-fraud" data-preset="fraud">
+              <span class="preset-title">4. Paper Shell</span>
+              <span class="preset-badge badge-orange">Circular Trading</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sandbox Adjusters -->
+        <div class="sandbox-adjusters">
+          <div class="sandbox-header-row">
+            <label class="section-label">ADJUST SANDBOX PARAMETERS</label>
+            <button class="text-btn" id="reset-parameters">Reset Preset</button>
+          </div>
+
+          <!-- Business Demographics -->
+          <div class="control-group card-glass">
+            <label class="sub-section-label">Business Metadata</label>
+            <div class="input-row-group">
+              <div class="field-item">
+                <label for="company-name-input" class="micro-label">Legal Name</label>
+                <input type="text" id="company-name-input" class="text-input" value="S.R. Textiles">
+              </div>
+              <div class="field-item">
+                <label for="pan-input" class="micro-label">Company PAN</label>
+                <input type="text" id="pan-input" class="text-input" value="ABCDE1234F">
+              </div>
+            </div>
+          </div>
+
+          <!-- CIBIL Controls -->
+          <div class="control-group card-glass">
+            <div class="control-label-row">
+              <label for="input-cibil">CIBIL Bureau Score</label>
+              <span class="control-value" id="val-cibil">720</span>
+            </div>
+            <input type="range" id="input-cibil" class="range-slider" min="300" max="900" value="720">
+            <div class="toggle-row">
+              <label class="switch-container">
+                <input type="checkbox" id="cibil-unavailable">
+                <span class="switch-slider"></span>
+              </label>
+              <span class="toggle-label">Mark Credit Invisible (No CIBIL History)</span>
+            </div>
+          </div>
+
+          <!-- Alternative Data Checkboxes -->
+          <div class="control-group card-glass">
+            <label class="sub-section-label">Alternative Data Sources Provided</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-container">
+                <input type="checkbox" id="source-gst" checked>
+                <span class="custom-checkbox"></span>
+                <span>GST Portal Invoices</span>
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="source-upi" checked>
+                <span class="custom-checkbox"></span>
+                <span>UPI Merchant Receipts</span>
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="source-aa" checked>
+                <span class="custom-checkbox"></span>
+                <span>Account Aggregator (AA)</span>
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="source-epfo" checked>
+                <span class="custom-checkbox"></span>
+                <span>EPFO Payroll Inflow</span>
+              </label>
+              <label class="checkbox-container">
+                <input type="checkbox" id="source-utility">
+                <span class="custom-checkbox"></span>
+                <span>Utility &amp; Energy Bills</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Cash Flows & Revenue Sliders -->
+          <div class="control-group card-glass">
+            <label class="sub-section-label">Monthly Transaction Volumes (Lakhs)</label>
+            
+            <div class="slider-row">
+              <div class="control-label-row">
+                <label for="input-gst-val">GST Sales Invoice</label>
+                <span class="control-value" id="val-gst">₹25.0L</span>
+              </div>
+              <input type="range" id="input-gst-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+            </div>
+
+            <div class="slider-row">
+              <div class="control-label-row">
+                <label for="input-upi-val">UPI Receipts</label>
+                <span class="control-value" id="val-upi">₹25.0L</span>
+              </div>
+              <input type="range" id="input-upi-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+            </div>
+
+            <div class="slider-row">
+              <div class="control-label-row">
+                <label for="input-aa-val">AA Bank Deposit</label>
+                <span class="control-value" id="val-aa">₹25.0L</span>
+              </div>
+              <input type="range" id="input-aa-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+            </div>
+          </div>
+
+          <!-- Trend and Staff Sliders -->
+          <div class="control-group card-glass">
+            <label class="sub-section-label">Business Operational Health</label>
+            
+            <div class="slider-row">
+              <div class="control-label-row">
+                <label for="input-revenue-growth">3-Month Sales Trend</label>
+                <span class="control-value" id="val-growth">+5%</span>
+              </div>
+              <input type="range" id="input-revenue-growth" class="range-slider" min="-50" max="50" value="5">
+            </div>
+
+            <div class="slider-row">
+              <div class="control-label-row">
+                <label for="input-employees">Active EPFO Payroll Employees</label>
+                <span class="control-value" id="val-employees">12 staff</span>
+              </div>
+              <input type="range" id="input-employees" class="range-slider" min="0" max="100" value="12">
+            </div>
+            
+            <div class="toggle-row">
+              <label class="switch-container">
+                <input type="checkbox" id="vendor-delays">
+                <span class="switch-slider"></span>
+              </label>
+              <span class="toggle-label">Flag Delay in Vendor Payments (>30 days)</span>
+            </div>
+
+            <div class="toggle-row">
+              <label class="switch-container">
+                <input type="checkbox" id="circular-signals">
+                <span class="switch-slider font-red"></span>
+              </label>
+              <span class="toggle-label color-warning">Inject Circular Trading Signal (Shell detection)</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RIGHT DASHBOARD VIEW: CLEAN TABBED WORKSPACE -->
+      <section class="dashboard-panel" aria-label="Risk Intelligence Dashboard">
+        
+        <!-- Tab Navigation Bar -->
+        <div class="tab-navigation">
+          <button class="tab-btn active" id="tab-summary" data-tab="summary-content">
+            <span class="tab-icon">⚡</span>
+            Underwriting Summary
+          </button>
+          <button class="tab-btn" id="tab-integrity" data-tab="integrity-content">
+            <span class="tab-icon">🔍</span>
+            Registry Integrity Matrix
+          </button>
+          <button class="tab-btn" id="tab-explain" data-tab="explain-content">
+            <span class="tab-icon">🧠</span>
+            AI Explainability (SHAP)
+          </button>
+          <button class="tab-btn" id="tab-console" data-tab="console-content">
+            <span class="tab-icon">👤</span>
+            Underwriter Audit Console
+          </button>
+        </div>
+
+        <!-- TAB 1: UNDERWRITING SUMMARY (TL;DR) -->
+        <div class="tab-content active-content" id="summary-content">
+          <div class="score-ribbon-grid">
+            <!-- Financial Health Score Card -->
+            <div class="score-card card-glow-emerald">
+              <div class="score-card-header">
+                <h3>FINANCIAL HEALTH SCORE</h3>
+                <div class="info-tooltip">
+                  <span class="tooltip-icon">i</span>
+                  <span class="tooltip-text">Calculated using real-time alternative data inputs (GST filings, UPI volumes, payroll trend).</span>
+                </div>
+              </div>
+              <div class="gauge-wrapper">
+                <svg class="radial-gauge" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="gauge-fill fill-emerald" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="50" id="gauge-health"/>
+                  <text class="gauge-text" x="50" y="55" id="text-health">80</text>
+                </svg>
+              </div>
+              <div class="score-subtext">FORWARD-LOOKING STABILITY</div>
+            </div>
+
+            <!-- Data Reliability Card -->
+            <div class="score-card card-glow-indigo">
+              <div class="score-card-header">
+                <h3>DATA RELIABILITY INDEX</h3>
+                <div class="info-tooltip">
+                  <span class="tooltip-icon">i</span>
+                  <span class="tooltip-text">Reflects how complete the uploaded data is and how well independent sources cross-verify.</span>
+                </div>
+              </div>
+              <div class="gauge-wrapper">
+                <svg class="radial-gauge" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="gauge-fill fill-indigo" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="25" id="gauge-reliability"/>
+                  <text class="gauge-text" x="50" y="55" id="text-reliability">90%</text>
+                </svg>
+              </div>
+              <div class="score-subtext">DATA INTEGRITY &amp; COVERAGE</div>
+            </div>
+
+            <!-- Hybrid Recommendation Panel -->
+            <div class="score-card recommendation-card">
+              <div class="rec-header">
+                <h3>DYNAMIC CREDIT RECOMMENDATION</h3>
+              </div>
+              <div class="rec-badge" id="rec-decision">APPROVE</div>
+              <div class="rec-limit-title">RECOMMENDED LIMIT</div>
+              <div class="rec-limit" id="rec-limit">₹18.0 Lakhs</div>
+              <div class="rec-terms-row">
+                <div class="rec-term">
+                  <span class="term-lbl">Est. Interest</span>
+                  <span class="term-val" id="rec-rate">11.5% p.a.</span>
+                </div>
+                <div class="rec-term border-left">
+                  <span class="term-lbl">Proposed Repayment</span>
+                  <span class="term-val" id="rec-tenure">Monthly Escrow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CIBIL Risk Calibration Panel -->
+          <div class="grid-card card-glass margin-top-md">
+            <div class="card-header-icon-row">
+              <div class="header-icon-container bg-amber-tint">
+                <svg viewBox="0 0 24 24" class="card-header-icon color-amber" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2" />
+                </svg>
+              </div>
+              <div>
+                <h3>CIBIL Risk Calibration Output</h3>
+                <p class="card-subtitle">Quantifies equivalent bureau risk tiers using transactional alt-data distributions</p>
+              </div>
+            </div>
+
+            <div class="calibration-content">
+              <div class="cibil-status-row">
+                <div class="status-box">
+                  <span class="box-label">ACTUAL BUREAU CIBIL</span>
+                  <span class="box-value" id="calib-cibil-val">Unavailable</span>
+                  <span class="box-tag tag-gray" id="calib-cibil-tag">Credit Invisible</span>
+                </div>
+                <div class="status-box border-left-purple">
+                  <span class="box-label">ESTIMATED BUREAU RISK TIER</span>
+                  <span class="box-value color-purple" id="calib-est-tier">Low-Medium Risk</span>
+                  <span class="box-tag tag-purple" id="calib-confidence">Confidence: 93%</span>
+                </div>
+              </div>
+
+              <!-- Risk Calibration visual bar -->
+              <div class="risk-bar-container">
+                <div class="risk-bar-labels">
+                  <span>Very Low Risk</span>
+                  <span>Medium Risk</span>
+                  <span>High Risk</span>
+                </div>
+                <div class="risk-bar-track">
+                  <div class="risk-pointer" id="risk-pointer-indicator"></div>
+                  <div class="risk-confidence-shadow" id="risk-confidence-band"></div>
+                </div>
+                <p class="risk-text-explanation" id="calib-explanation-text">
+                  Processing mathematical coordinates...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: REGISTRY INTEGRITY MATRIX -->
+        <div class="tab-content" id="integrity-content">
+          <div class="dashboard-grid-mid">
+            <!-- Multi-Source Cross-Check -->
+            <div class="grid-card card-glass">
+              <div class="card-header-icon-row">
+                <div class="header-icon-container bg-indigo-tint">
+                  <svg viewBox="0 0 24 24" class="card-header-icon color-indigo" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Multi-Source Revenue Reconciliation</h3>
+                  <p class="card-subtitle">Cross-checks self-declared flows against registry invoice ledgers and statements</p>
+                </div>
+              </div>
+
+              <div class="verification-content">
+                <div class="cross-check-table">
+                  <div class="table-row table-header">
+                    <span>Channel Source</span>
+                    <span>Monthly Flow</span>
+                    <span>Match Status</span>
+                  </div>
+                  <div class="table-row">
+                    <span class="source-cell"><span class="source-dot bg-green"></span>GST Sales Registry</span>
+                    <span class="flow-val" id="matrix-gst-val">₹0.0L</span>
+                    <span class="match-badge badge-gray" id="matrix-gst-status">Excluded</span>
+                  </div>
+                  <div class="table-row">
+                    <span class="source-cell"><span class="source-dot bg-indigo"></span>UPI Merchant Gateway</span>
+                    <span class="flow-val" id="matrix-upi-val">₹0.0L</span>
+                    <span class="match-badge badge-gray" id="matrix-upi-status">Excluded</span>
+                  </div>
+                  <div class="table-row border-bottom">
+                    <span class="source-cell"><span class="source-dot bg-purple"></span>Account Aggregator Statements</span>
+                    <span class="flow-val" id="matrix-aa-val">₹0.0L</span>
+                    <span class="match-badge badge-gray" id="matrix-aa-status">Excluded</span>
+                  </div>
+                </div>
+
+                <div class="agreement-rate-row">
+                  <div class="agreement-gauge-info">
+                    <span class="lbl">Cross-Source Reconciliation Index</span>
+                    <span class="val color-emerald" id="matrix-agreement-val">0% Agreement</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill fill-emerald" id="matrix-agreement-bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fraud & Anomaly Risk Assessment -->
+            <div class="grid-card card-glass score-card card-glow-emerald" id="fraud-card" style="align-items: center; justify-content: center; text-align: center;">
+              <div class="score-card-header">
+                <h3>FRAUD &amp; ANOMALY SHIELD</h3>
+                <div class="info-tooltip">
+                  <span class="tooltip-icon">i</span>
+                  <span class="tooltip-text">Analyzes patterns like invoice round-tripping and UPI-to-GST mismatch topology.</span>
+                </div>
+              </div>
+              <div class="fraud-display" style="margin: auto;">
+                <div class="shield-icon-container">
+                  <svg class="shield-icon text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="fraud-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <span class="fraud-level text-green" id="text-fraud">LOW</span>
+                <span class="fraud-indicator-sub" id="text-fraud-details">No anomalies flagged</span>
+              </div>
+              <div class="score-subtext" style="margin-top: 1rem;">ANTI-MANIPULATION TOPOLOGY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: AI EXPLAINABILITY -->
+        <div class="tab-content" id="explain-content">
+          <div class="dashboard-grid-low">
+            <!-- SHAP Waterfall -->
+            <div class="grid-card card-glass flex-expand">
+              <div class="card-header-icon-row">
+                <div class="header-icon-container bg-emerald-tint">
+                  <svg viewBox="0 0 24 24" class="card-header-icon color-emerald" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>SHAP Feature Importance Analysis</h3>
+                  <p class="card-subtitle">Mathematical contribution of indicators to the probability calculations</p>
+                </div>
+              </div>
+              <div class="explain-drivers-container" id="shap-drivers-list">
+                <!-- Injected dynamically by app.js -->
+              </div>
+            </div>
+
+            <!-- Underwriter Narrative -->
+            <div class="grid-card card-glass flex-expand border-purple-glow">
+              <div class="card-header-icon-row">
+                <div class="header-icon-container bg-purple-tint">
+                  <svg viewBox="0 0 24 24" class="card-header-icon color-purple" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>AI Underwriter's Narrative</h3>
+                  <p class="card-subtitle">Synthesized risk narrative explaining evaluation drivers for auditing</p>
+                </div>
+              </div>
+              <div class="terminal-narrative-box">
+                <div class="narrative-content-body" id="text-narrative">
+                  Loading AI memo...
+                </div>
+                <div class="terminal-footer">
+                  <span class="term-status-dot"></span>
+                  <span class="term-footer-txt">VALKYRIE-ENGINE_V2.1 // SHAP_EXPLAINER_ENABLED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: UNDERWRITER CONSOLE (HITL) -->
+        <div class="tab-content" id="console-content">
+          <div class="dashboard-grid-mid">
+            <!-- Manual Override Panel -->
+            <div class="grid-card card-glass">
+              <div class="card-header-icon-row">
+                <div class="header-icon-container bg-purple-tint">
+                  <svg viewBox="0 0 24 24" class="card-header-icon color-purple" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Credit Limit Override Console</h3>
+                  <p class="card-subtitle">Perform policy overrides. Mandatory database logging for audit compliance</p>
+                </div>
+              </div>
+
+              <form id="override-form" class="override-form">
+                <div class="field-item">
+                  <label for="underwriter-name">Underwriter Name</label>
+                  <input type="text" id="underwriter-name" class="text-input" placeholder="e.g. Anmol Deep" required>
+                </div>
+                
+                <div class="input-row-group margin-top-sm">
+                  <div class="field-item">
+                    <label for="override-decision-select">New Decision</label>
+                    <select id="override-decision-select" class="text-input">
+                      <option value="APPROVE">APPROVE</option>
+                      <option value="REFER">REFER</option>
+                      <option value="DECLINE">DECLINE</option>
+                    </select>
+                  </div>
+                  <div class="field-item">
+                    <label for="override-limit-input">Approved Limit (Lakhs)</label>
+                    <input type="number" id="override-limit-input" class="text-input" step="0.1" min="0" required>
+                  </div>
+                </div>
+
+                <div class="field-item margin-top-sm">
+                  <label for="override-reason-text">Justification for Audit</label>
+                  <textarea id="override-reason-text" class="text-area" rows="3" placeholder="Explain the rationale behind the limit adjustment (Min 10 characters)..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary margin-top-sm" style="width: 100%;">
+                  Log Manual Override
+                </button>
+              </form>
+            </div>
+
+            <!-- Audit History Logs -->
+            <div class="grid-card card-glass flex-expand">
+              <div class="card-header-icon-row">
+                <div class="header-icon-container bg-indigo-tint">
+                  <svg viewBox="0 0 24 24" class="card-header-icon color-indigo" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3>Committee Audit Log History</h3>
+                  <p class="card-subtitle">Auditable record of all manual modifications registered in PostgreSQL</p>
+                </div>
+              </div>
+              
+              <div class="audit-history-box" id="audit-logs-container">
+                <p class="empty-state">No overrides logged for this application.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS BAR -->
+        <div class="action-buttons-bar">
+          <div class="status-brief-indicator">
+            <span class="small-title">AUDIT TRAIL</span>
+            <span class="small-desc" id="audit-trail-info">Case loading...</span>
+          </div>
+          <div class="action-buttons-group">
+            <button class="btn btn-outline" id="btn-escalate">Escalate Case</button>
+            <button class="btn btn-primary" id="btn-approve">Approve Assessment</button>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDBI Credit Intel - Commercial Portfolio Ledger</title>
+  <meta name="description" content="IDBI Bank Commercial Lending Underwriting Hub and Portfolio Ledger.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header" id="main-header">
+      <div class="header-logo-section">
+        <svg class="app-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">
+          <h1>IDBI <span class="accent-text">CREDIT INTEL</span></h1>
+          <span class="sub-logo">Commercial Decision Support System</span>
+        </div>
+      </div>
+      <div class="header-metadata">
+        <div class="meta-badge pulse-badge">
+          <span class="badge-dot"></span>
+          <span id="backend-status-text">Securing Connection...</span>
+        </div>
+        <div class="meta-badge-orange">
+          <span>COMMERCIAL LENDING DIVISION</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-layout">
+      <!-- Title Section -->
+      <div class="page-title-section">
+        <h2>Commercial Credit Ledger</h2>
+        <a href="new_assessment.html" class="btn btn-orange">
+          <span>+</span> Initialize New Credit Assessment
+        </a>
+      </div>
+
+      <!-- Stats Summary Band -->
+      <section class="stats-banner" aria-label="Portfolio Summary Statistics">
+        <div class="stat-item-box">
+          <span class="section-label">Total Applications</span>
+          <span class="stat-val" id="stat-total">0</span>
+        </div>
+        <div class="stat-item-box">
+          <span class="section-label">Approved (Credit Lines Active)</span>
+          <span class="stat-val" id="stat-approved">0</span>
+        </div>
+        <div class="stat-item-box">
+          <span class="section-label">Under Committee Review</span>
+          <span class="stat-val color-orange" id="stat-referred">0</span>
+        </div>
+        <div class="stat-item-box">
+          <span class="section-label">Declined Applications</span>
+          <span class="stat-val color-red" id="stat-declined">0</span>
+        </div>
+      </section>
+
+      <!-- Search & Filters -->
+      <div class="search-filter-box">
+        <svg style="width: 16px; height: 16px; color: var(--text-muted);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" id="search-input" class="search-input" placeholder="Search credit ledger by Business Name or Company PAN...">
+      </div>
+
+      <!-- Ledger Table -->
+      <div class="table-wrapper">
+        <table class="portfolio-table" id="portfolio-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Business Entity</th>
+              <th>PAN ID</th>
+              <th>Health Score</th>
+              <th>Data Reliability</th>
+              <th>Risk Tier</th>
+              <th>Engine Recommendation</th>
+              <th>Approved Credit Limit</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="portfolio-table-body">
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                Retrieving database records...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{
+    "dataset_shape": [
+        6819,
+        96
+    ],
+    "missing_values": 0,
+    "default_rate": 0.03226279513125092,
+    "default_distribution": {
+        "0": 6599,
+        "1": 220
+    },
+    "top_risk_correlations": {
+        " Debt ratio %": 0.25016096206661775,
+        " Current Liability to Assets": 0.19449443585543952,
+        " Borrowing dependency": 0.1765429361615994,
+        " Current Liability to Current Assets": 0.17130604352180528,
+        " Liability to Equity": 0.16681209778111403,
+        " Current Liability to Equity": 0.1538283619069691,
+        " Current Liabilities/Equity": 0.1538283619069691,
+        " Liability-Assets Flag": 0.13921155938203358,
+        " Total expense/Assets": 0.13904921596620506,
+        " Equity to Long-term Liability": 0.139013572544475
+    },
+    "top_safety_correlations": {
+        " Net Income to Total Assets": -0.31545697161429936,
+        " ROA(A) before interest and % after tax": -0.28294058493448865,
+        " ROA(B) before interest and depreciation after tax": -0.2730513178632931,
+        " ROA(C) before interest and depreciation before interest": -0.2608065575202611,
+        " Net worth/Assets": -0.25016096206661936,
+        " Persistent EPS in the Last Four Seasons": -0.2195596811907876,
+        " Retained Earnings to Total Assets": -0.21777877998712378,
+        " Net profit before tax/Paid-in capital": -0.20785651999287655,
+        " Per Share Net profit before tax (Yuan \u00a5)": -0.201394834452866,
+        " Working Capital to Total Assets": -0.1930833758241344
+    },
+    "selected_features_descriptive": {
+        " ROA(C) before interest and depreciation before interest": {
+            "count": 6819.0,
+            "mean": 0.5051796332417815,
+            "std": 0.06068563875428444,
+            "min": 0.0,
+            "25%": 0.476527080388047,
+            "50%": 0.502705601325988,
+            "75%": 0.535562813825379,
+            "max": 1.0
+        },
+        " Operating Gross Margin": {
+            "count": 6819.0,
+            "mean": 0.6079480383703836,
+            "std": 0.01693381254822146,
+            "min": 0.0,
+            "25%": 0.6004446590466855,
+            "50%": 0.605997492036495,
+            "75%": 0.613914152697502,
+            "max": 1.0
+        },
+        " Net Value Growth Rate": {
+            "count": 6819.0,
+            "mean": 1566212.055241067,
+            "std": 114159389.51834548,
+            "min": 0.0,
+            "25%": 0.0004409688868264,
+            "50%": 0.0004619555222076,
+            "75%": 0.000499362141038,
+            "max": 9330000000.0
+        },
+        " Debt ratio %": {
+            "count": 6819.0,
+            "mean": 0.11317708497306007,
+            "std": 0.05392030606308283,
+            "min": 0.0,
+            "25%": 0.0728905281615624,
+            "50%": 0.111406717658796,
+            "75%": 0.148804305106267,
+            "max": 1.0
+        },
+        " Borrowing dependency": {
+            "count": 6819.0,
+            "mean": 0.37465429459872324,
+            "std": 0.016286163355500444,
+            "min": 0.0,
+            "25%": 0.3701678435547765,
+            "50%": 0.372624322553083,
+            "75%": 0.3762707372009225,
+            "max": 1.0
+        },
+        " Cash/Total Assets": {
+            "count": 6819.0,
+            "mean": 0.12409456048965214,
+            "std": 0.13925058358332645,
+            "min": 0.0,
+            "25%": 0.03354322123979425,
+            "50%": 0.0748874639354301,
+            "75%": 0.1610731518633315,
+            "max": 1.0
+        },
+        " Cash flow rate": {
+            "count": 6819.0,
+            "mean": 0.4674311857796612,
+            "std": 0.017035517308785362,
+            "min": 0.0,
+            "25%": 0.4615577531181065,
+            "50%": 0.465079724549793,
+            "75%": 0.471003917029432,
+            "max": 1.0
+        }
+    }
+}

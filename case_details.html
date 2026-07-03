@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Underwriting File Detail - IDBI Bank Companion</title>
+  <meta name="description" content="Spacious underwriting file detail for manual overrides and dynamic risk auditing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header" id="main-header">
+      <div class="header-logo-section">
+        <svg class="app-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">
+          <h1>IDBI <span class="accent-text">CREDIT INTEL</span></h1>
+          <span class="sub-logo">Commercial Decision Support System</span>
+        </div>
+      </div>
+      <div class="header-metadata">
+        <div class="meta-badge pulse-badge">
+          <span class="badge-dot"></span>
+          <span id="backend-status-text">Securing Connection...</span>
+        </div>
+        <div class="meta-badge-orange">
+          <span>COMMERCIAL LENDING DIVISION</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-layout">
+      
+      <!-- Top Action Bar & Back link -->
+      <div class="page-title-section">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a href="index.html" class="btn btn-outline" style="padding: 0.4rem 0.85rem;">➔ Back to Portfolio</a>
+          <h2>Underwriting Assessment File</h2>
+        </div>
+        <button class="btn btn-outline" id="btn-print">
+          <svg style="width: 14px; height: 14px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Print Credit Committee Memo
+        </button>
+      </div>
+
+      <!-- Case summary banner -->
+      <section class="case-summary-header" aria-label="Case Identification Header">
+        <div class="case-id-section">
+          <h2 id="case-company-name">Loading Profile...</h2>
+          <div class="case-id-meta">
+            <span>PAN: <strong class="pan-cell" id="case-pan">--</strong></span>
+            <span>Assessment Date: <strong id="case-date">--</strong></span>
+            <span>Verification ID: <strong id="case-uid">--</strong></span>
+          </div>
+        </div>
+        
+        <div class="case-limits-block">
+          <div class="limit-item">
+            <span class="limit-lbl">AI Suggested Limit</span>
+            <span class="limit-val" id="case-ai-limit">₹0L</span>
+          </div>
+          <div class="limit-item border-left" style="border-left: 1px solid var(--border-color); padding-left: 1.5rem;">
+            <span class="limit-lbl">Final Approved Limit</span>
+            <span class="limit-val color-green" id="case-approved-limit">₹0L</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ROW 1: DYNAMIC HEALTH SCORES & CIBIL CALIBRATION -->
+      <div class="case-detail-row">
+        
+        <!-- Score Overview Indicators -->
+        <div class="card-white">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-green-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-green" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Dynamic Commercial Risk Indicators</h3>
+              <p class="card-subtitle">Aggregated assessment parameters generated from real-time registry queries</p>
+            </div>
+          </div>
+
+          <div class="score-flex-row">
+            <div class="score-card-item">
+              <span class="section-label" style="font-size: 0.62rem; margin-bottom: 0.25rem;">Financial Health Score</span>
+              <div class="gauge-wrapper">
+                <svg class="radial-gauge" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="gauge-fill fill-green" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="251.2" id="gauge-health"/>
+                  <text class="gauge-text" x="50" y="55" id="text-health">0</text>
+                </svg>
+              </div>
+              <span class="stat-val" style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted);">HEALTH RATE</span>
+            </div>
+
+            <div class="score-card-item">
+              <span class="section-label" style="font-size: 0.62rem; margin-bottom: 0.25rem;">Data Reliability Index</span>
+              <div class="gauge-wrapper">
+                <svg class="radial-gauge" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="gauge-fill fill-indigo" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="251.2" id="gauge-reliability"/>
+                  <text class="gauge-text" x="50" y="55" id="text-reliability">0%</text>
+                </svg>
+              </div>
+              <span class="stat-val" style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted);">INTEGRITY RATE</span>
+            </div>
+
+            <div class="score-card-item" style="border-left: 1px solid var(--border-color); padding-left: 1.5rem; text-align: left; align-items: flex-start; justify-content: center; gap: 0.4rem;">
+              <div>
+                <span class="limit-lbl">AI RECOMMENDATION</span>
+                <span class="badge badge-refer" id="rec-decision" style="font-size: 0.75rem; padding: 0.3rem 1rem; margin-top: 0.15rem;">REFER</span>
+              </div>
+              <div>
+                <span class="limit-lbl">DYNAMIC INTEREST RATE</span>
+                <span class="bold-cell" style="font-size: 0.9rem;" id="rec-rate">--% p.a.</span>
+              </div>
+              <div>
+                <span class="limit-lbl">REPAYMENT ESCROW METHOD</span>
+                <span class="bold-cell" style="font-size: 0.75rem; color: var(--text-secondary);" id="rec-terms">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CIBIL Calibration Matrix -->
+        <div class="card-white">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-orange-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-orange" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2" />
+              </svg>
+            </div>
+            <div>
+              <h3>CIBIL Risk Calibration Output</h3>
+              <p class="card-subtitle">Estimates equivalent risk tiers for credit invisibles vs triggers warnings for Prime files</p>
+            </div>
+          </div>
+
+          <div class="calibration-content">
+            <div class="cibil-status-row">
+              <div class="status-box">
+                <span class="box-label">ACTUAL BUREAU CIBIL</span>
+                <span class="box-value" id="calib-cibil-val">Unavailable</span>
+                <span class="box-tag tag-gray" id="calib-cibil-tag">Credit Invisible</span>
+              </div>
+              <div class="status-box border-left-purple">
+                <span class="box-label">ESTIMATED RISK TIER</span>
+                <span class="box-value color-purple" id="calib-est-tier">Low-Medium Risk</span>
+                <span class="box-tag tag-purple" id="calib-confidence">Confidence: 93%</span>
+              </div>
+            </div>
+
+            <!-- Risk Calibration visual bar -->
+            <div class="risk-bar-container">
+              <div class="risk-bar-labels">
+                <span>Very Low Risk</span>
+                <span>Medium Risk</span>
+                <span>High Risk</span>
+              </div>
+              <div class="risk-bar-track">
+                <div class="risk-pointer" id="risk-pointer-indicator"></div>
+                <div class="risk-confidence-shadow" id="risk-confidence-band"></div>
+              </div>
+              <p class="risk-text-explanation" id="calib-explanation-text">
+                Normalizing alt-data feature vectors...
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROW 2: TRANSACTION INTEGRITY MATRIX & SHIELD -->
+      <div class="case-detail-row">
+        
+        <!-- Multi-Source Cross-Check table -->
+        <div class="card-white">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-blue-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-blue" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Multi-Source Revenue Reconciliation Matrix</h3>
+              <p class="card-subtitle">Cross-checks billing ledgers against UPI settlement rails and statements</p>
+            </div>
+          </div>
+
+          <div class="verification-content">
+            <div class="cross-check-table">
+              <div class="table-row table-header">
+                <span>Channel Source</span>
+                <span>Monthly Inflow</span>
+                <span>Match Status</span>
+              </div>
+              <div class="table-row">
+                <span class="source-cell"><span class="source-dot bg-green"></span>GST Sales Registry</span>
+                <span class="flow-val" id="matrix-gst-val">₹0.0L</span>
+                <span class="match-badge badge-gray" id="matrix-gst-status">Excluded</span>
+              </div>
+              <div class="table-row">
+                <span class="source-cell"><span class="source-dot bg-indigo"></span>UPI Merchant Gateway</span>
+                <span class="flow-val" id="matrix-upi-val">₹0.0L</span>
+                <span class="match-badge badge-gray" id="matrix-upi-status">Excluded</span>
+              </div>
+              <div class="table-row border-bottom">
+                <span class="source-cell"><span class="source-dot bg-purple"></span>Account Aggregator Deposits</span>
+                <span class="flow-val" id="matrix-aa-val">₹0.0L</span>
+                <span class="match-badge badge-gray" id="matrix-aa-status">Excluded</span>
+              </div>
+            </div>
+
+            <div class="agreement-rate-row">
+              <div class="agreement-gauge-info">
+                <span class="lbl">Cross-Source Reconciliation Index</span>
+                <span class="val color-emerald" id="matrix-agreement-val">0% Agreement</span>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill fill-emerald" id="matrix-agreement-bar" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Ingested Transactional Risk Indicators -->
+            <div style="border-top: 1px dashed var(--border-color); padding-top: 0.85rem; margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+              <span class="sub-section-label" style="font-size: 0.7rem; border-bottom: none; margin-bottom: 0;">Ingested Transactional Risk Indicators</span>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.72rem;">
+                <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.65rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px;">
+                  <span style="color: var(--text-muted);">90d Debit Bounces:</span>
+                  <strong id="diag-bounces" class="bold-cell">0 bounces</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.65rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px;">
+                  <span style="color: var(--text-muted);">CC/OD Limit Use:</span>
+                  <strong id="diag-od-use" class="bold-cell">0%</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.65rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px;">
+                  <span style="color: var(--text-muted);">ADB Inflow Ratio:</span>
+                  <strong id="diag-adb-ratio" class="bold-cell">15%</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.65rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px;">
+                  <span style="color: var(--text-muted);">Buyer Concentration:</span>
+                  <strong id="diag-cust-conc" class="bold-cell">25%</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.65rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 6px; grid-column: span 2;">
+                  <span style="color: var(--text-muted);">Average GST Filing Latency:</span>
+                  <strong id="diag-gst-delay" class="bold-cell">0 days</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fraud Shield Indicator -->
+        <div class="card-white" style="justify-content: space-between;">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-orange-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-orange" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Fraud &amp; Manipulation Anomaly Shield</h3>
+              <p class="card-subtitle">Topology checks on bank statement credits to detect circular lending patterns</p>
+            </div>
+          </div>
+
+          <div class="fraud-card-inline" id="fraud-card">
+            <div class="shield-icon-container">
+              <svg class="shield-icon text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="fraud-icon">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <div class="fraud-txt-col">
+              <div class="fraud-title-row">
+                <span>CIRCULAR SYSTEM FLAG</span>
+                <span class="badge" id="text-fraud" style="padding: 0.1rem 0.5rem; font-size: 0.6rem;">LOW RISK</span>
+              </div>
+              <span class="fraud-level" id="text-fraud-level" style="font-size: 0.85rem; font-weight: 800; margin-top: 0.15rem;">Verified</span>
+              <span class="fraud-desc" id="text-fraud-details">Reconciled registries verify legitimate counterparty payments</span>
+            </div>
+          </div>
+
+          <p style="font-size: 0.68rem; color: var(--text-muted); line-height: 1.4;">
+            We cross-check invoicing ledgers against Account Aggregator bank clearing loops. If $A \rightarrow B \rightarrow C \rightarrow A$ loops account for $>15\%$ of transactions, the shield triggers a High Fraud Risk warning.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ROW 3: AI EXPLAINABILITY & WATERFALL -->
+      <div class="case-detail-row">
+        
+        <!-- Attributions card -->
+        <div class="card-white flex-expand">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-green-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-green" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h3>SHAP Feature Importance Attribution</h3>
+              <p class="card-subtitle">Quantified impact of inputs on the dynamic Credit Health rating</p>
+            </div>
+          </div>
+          <div class="explain-drivers-container" id="shap-drivers-list">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- AI Underwriter Narrative -->
+        <div class="card-white flex-expand border-purple-glow">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-purple-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-purple" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <h3>AI Underwriter's Narrative Memo</h3>
+              <p class="card-subtitle">Dynamic risk synthesis generated for committee reviews</p>
+            </div>
+          </div>
+          
+          <div class="terminal-narrative-box">
+            <div class="narrative-content-body" id="text-narrative">
+              Calculating risk models...
+            </div>
+            <div class="terminal-footer">
+              <span class="term-status-dot"></span>
+              <span class="term-footer-txt" id="terminal-meta-label">IDBI-RISK-ENGINE_V2.1 // ATTRIBUTION_MAPPING_ON</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROW 4: CREDIT COMMITTEE CONSOLE & AUDIT HISTORY -->
+      <div class="case-detail-row">
+        
+        <!-- Override form panel -->
+        <div class="card-white">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-purple-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-purple" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Human-in-the-Loop Override Console</h3>
+              <p class="card-subtitle">Authorize manual decisions. All edits are logged in PostgreSQL tables for compliance auditing</p>
+            </div>
+          </div>
+
+          <form id="override-form" class="override-form">
+            <div class="field-item">
+              <label for="underwriter-name" class="field-label">Underwriter/Officer Name</label>
+              <input type="text" id="underwriter-name" class="text-input" placeholder="e.g. Anmol Deep" required>
+            </div>
+            
+            <div class="input-row-group">
+              <div class="field-item">
+                <label for="override-decision-select" class="field-label">Manual Decision</label>
+                <select id="override-decision-select" class="text-input">
+                  <option value="APPROVE">APPROVE</option>
+                  <option value="REFER">REFER</option>
+                  <option value="DECLINE">DECLINE</option>
+                </select>
+              </div>
+              <div class="field-item">
+                <label for="override-limit-input" class="field-label">Approved Limit (Lakhs)</label>
+                <input type="number" id="override-limit-input" class="text-input" step="0.1" min="0" required>
+              </div>
+            </div>
+
+            <div class="field-item">
+              <label for="override-reason-text" class="field-label">Manual Justification (Audit Trail)</label>
+              <textarea id="override-reason-text" class="text-area" rows="3" placeholder="Specify the risk rationale for modifying AI limits (Min 10 characters)..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.6rem 1rem;">
+              Commit Underwriter Adjustment
+            </button>
+          </form>
+        </div>
+
+        <!-- SQL Logs Panel -->
+        <div class="card-white flex-expand">
+          <div class="card-header-icon-row">
+            <div class="header-icon-container bg-indigo-tint">
+              <svg viewBox="0 0 24 24" class="card-header-icon color-indigo" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3>Committee Overrides Audit Trail</h3>
+              <p class="card-subtitle">Permanent, auditable record of all human interventions logged for this MSME file</p>
+            </div>
+          </div>
+
+          <div class="audit-history-box" id="audit-logs-container">
+            <p class="empty-state">No adjustments logged in database logs.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM ACTION BAR -->
+      <section class="action-buttons-bar" aria-label="Workflow Actions">
+        <div class="status-brief-indicator">
+          <span class="small-title">AUDIT COMPLIANCE ID</span>
+          <span class="small-desc" id="audit-trail-info">Case loading...</span>
+        </div>
+        <div class="action-buttons-group">
+          <button class="btn btn-outline" id="btn-escalate">Escalate File</button>
+          <a href="index.html" class="btn btn-primary">File Credit Decision Memo</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="case_details.js"></script>
+</body>
+</html>

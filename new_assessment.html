@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Credit Assessment - IDBI Bank Companion</title>
+  <meta name="description" content="Initialize a new MSME credit file using alternative registry indicators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header" id="main-header">
+      <div class="header-logo-section">
+        <svg class="app-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L17C22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">
+          <h1>IDBI <span class="accent-text">CREDIT INTEL</span></h1>
+          <span class="sub-logo">Commercial Decision Support System</span>
+        </div>
+      </div>
+      <div class="header-metadata">
+        <div class="meta-badge pulse-badge">
+          <span class="badge-dot"></span>
+          <span id="backend-status-text">Securing Connection...</span>
+        </div>
+        <div class="meta-badge-orange">
+          <span>COMMERCIAL LENDING DIVISION</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-layout">
+      <!-- Title Section -->
+      <div class="page-title-section">
+        <h2>Initialize Commercial Credit Assessment</h2>
+        <a href="index.html" class="btn btn-outline">➔ Back to Portfolio Hub</a>
+      </div>
+
+      <div class="app-layout-grid">
+        
+        <!-- LEFT PANEL: CASE PRESETS & EDUCATION GUIDE (360px Sidebar) -->
+        <section class="sidebar-panel">
+          
+          <!-- Template Preset Loader -->
+          <div class="card-white">
+            <div class="card-header-icon-row">
+              <div class="header-icon-container bg-orange-tint">
+                <svg viewBox="0 0 24 24" class="card-header-icon color-orange" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <div>
+                <h3>Standard Risk Profile Templates</h3>
+                <p class="card-subtitle">Select an underwriting template to pre-fill operational parameters</p>
+              </div>
+            </div>
+
+            <div class="presets-container" style="margin-top: 1rem;">
+              <div class="presets-grid" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <button class="preset-btn active" id="preset-invisible" data-preset="invisible">
+                  <span class="preset-title">Weaver Enterprise</span>
+                  <span class="preset-badge badge-green">Thin File / Reconciled</span>
+                </button>
+                <button class="preset-btn" id="preset-silent" data-preset="silent">
+                  <span class="preset-title">Gopal Retailers</span>
+                  <span class="preset-badge badge-red">Existing Bureau / Drop</span>
+                </button>
+                <button class="preset-btn" id="preset-volatile" data-preset="volatile">
+                  <span class="preset-title">AgroFarms</span>
+                  <span class="preset-badge badge-purple">Seasonal Cashflows</span>
+                </button>
+                <button class="preset-btn" id="preset-fraud" data-preset="fraud">
+                  <span class="preset-title">Apex Trading</span>
+                  <span class="preset-badge badge-orange">Circular Banking Loop</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Engine Guidelines -->
+          <div class="card-white">
+            <div class="card-header-icon-row">
+              <div class="header-icon-container bg-green-tint">
+                <svg viewBox="0 0 24 24" class="card-header-icon color-green" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3>How Valkyrie Underwrites</h3>
+                <p class="card-subtitle">Information on the zero-hardcode credit scoring logic</p>
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.75rem; line-height: 1.4;">
+              <p>
+                Unlike traditional Rule Engines that rely on rigid limits (e.g., <em>"If CIBIL &lt; 680, immediately reject"</em>), Valkyrie implements a <strong>Logistic Probability Model</strong>.
+              </p>
+              <p>
+                All variables are mapped onto a feature vector. A weak score in one segment (e.g. lack of credit history) can be mathematically offset by strong markers in another (e.g., consistent GST invoice filings, payroll stability, and bank credits).
+              </p>
+              <p>
+                The model computes a unified <strong>Probability of Default (PD)</strong>. The approved limit scales based on verified cash flows multiplied by the calculated survival rate.
+              </p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- RIGHT PANEL: SANDBOX CONTROLS FORM (1fr wide - Double column cards grid) -->
+        <section style="display: flex; flex-direction: column;">
+          
+          <form id="assessment-form" style="width: 100%;">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; align-items: start;">
+              
+              <!-- Column 1 inputs -->
+              <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <!-- Business Metadata (Stacked inputs for PAN fix) -->
+                <div class="card-white">
+                  <label class="sub-section-label">1. Business Demographics</label>
+                  <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                    <div class="field-item">
+                      <label for="company-name-input" class="field-label">Legal Company Name</label>
+                      <input type="text" id="company-name-input" class="text-input" value="S.R. Textiles" required>
+                    </div>
+                    <div class="field-item">
+                      <label for="pan-input" class="field-label">Permanent Account Number (PAN)</label>
+                      <input type="text" id="pan-input" class="text-input" value="AAAPW9928M" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CIBIL Controls -->
+                <div class="card-white">
+                  <label class="sub-section-label">2. Traditional CIBIL Score</label>
+                  <div class="field-item">
+                    <div class="control-label-row">
+                      <label for="input-cibil" class="field-label">CIBIL Bureau Score</label>
+                      <span class="control-value" id="val-cibil">720</span>
+                    </div>
+                    <input type="range" id="input-cibil" class="range-slider" min="300" max="900" value="720">
+                  </div>
+                  <div class="toggle-row">
+                    <label class="switch-container">
+                      <input type="checkbox" id="cibil-unavailable" checked>
+                      <span class="switch-slider"></span>
+                    </label>
+                    <span class="toggle-label">Mark Credit Invisible (No CIBIL History)</span>
+                  </div>
+                </div>
+
+                <!-- Ingestion Gateways & DPI Authentication -->
+                <div class="card-white">
+                  <label class="sub-section-label">3. Ingestion Gateways &amp; DPI Authentication</label>
+                  
+                  <div class="field-item">
+                    <label for="integration-gateway" class="field-label">Registry API Aggregator Provider</label>
+                    <select id="integration-gateway" class="text-input">
+                      <option value="karza">Karza API Engine (GSTN &amp; EPFO)</option>
+                      <option value="signzy">Signzy Gateway (GSTN &amp; PAN Core)</option>
+                      <option value="setu">Setu FIU Portal (Account Aggregator)</option>
+                      <option value="perfios">Perfios Decisioning Engine</option>
+                    </select>
+                  </div>
+
+                  <div class="field-item">
+                    <label for="gstin-input" class="field-label">Goods and Services Tax IN (GSTIN)</label>
+                    <input type="text" id="gstin-input" class="text-input" value="27AAASR9928A1Z3" placeholder="e.g. 27AAAAA1111A1Z3" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$">
+                  </div>
+
+                  <div class="field-item">
+                    <label for="aa-handle-input" class="field-label">Account Aggregator Consent Handle</label>
+                    <input type="text" id="aa-handle-input" class="text-input" value="srtextiles@onemoney" placeholder="e.g. company@onemoney">
+                  </div>
+
+                  <div class="field-item">
+                    <label for="epfo-id-input" class="field-label">EPFO Establishment Code</label>
+                    <input type="text" id="epfo-id-input" class="text-input" value="MH/MUM/0099281/000" placeholder="e.g. MH/BAN/0048182/000">
+                  </div>
+
+                  <div class="field-item">
+                    <label for="upi-vpa-input" class="field-label">UPI Merchant VPA / ID</label>
+                    <input type="text" id="upi-vpa-input" class="text-input" value="srtextiles@idbi" placeholder="e.g. merchant@idbi">
+                  </div>
+
+                  <div class="field-item">
+                    <label for="utility-id-input" class="field-label">Utility Consumer Account Number</label>
+                    <input type="text" id="utility-id-input" class="text-input" value="" placeholder="e.g. MSEDCL-9928172">
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Column 2 inputs -->
+              <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <!-- Monthly transaction flows -->
+                <div class="card-white">
+                  <label class="sub-section-label">4. Monthly Transaction Volumes (Lakhs)</label>
+                  
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-gst-val" class="field-label">GST Sales Ledger</label>
+                      <span class="control-value" id="val-gst">₹25.0L</span>
+                    </div>
+                    <input type="range" id="input-gst-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-upi-val" class="field-label">UPI Merchant Rails</label>
+                      <span class="control-value" id="val-upi">₹25.0L</span>
+                    </div>
+                    <input type="range" id="input-upi-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-aa-val" class="field-label">AA Bank Deposits</label>
+                      <span class="control-value" id="val-aa">₹25.0L</span>
+                    </div>
+                    <input type="range" id="input-aa-val" class="range-slider" min="0" max="50" step="0.5" value="25">
+                  </div>
+                </div>
+
+                <!-- Trends and Staff counts -->
+                <div class="card-white">
+                  <label class="sub-section-label">5. Business Operational Health</label>
+                  
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-revenue-growth" class="field-label">3-Month Sales Trend</label>
+                      <span class="control-value" id="val-growth">+5%</span>
+                    </div>
+                    <input type="range" id="input-revenue-growth" class="range-slider" min="-50" max="50" value="5">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-employees" class="field-label">Active EPFO Employees</label>
+                      <span class="control-value" id="val-employees">12 staff</span>
+                    </div>
+                    <input type="range" id="input-employees" class="range-slider" min="0" max="100" value="12">
+                  </div>
+                  
+                  <div class="toggle-row">
+                    <label class="switch-container">
+                      <input type="checkbox" id="vendor-delays">
+                      <span class="switch-slider"></span>
+                    </label>
+                    <span class="toggle-label">Flag Delay in Vendor Payments (>30 days)</span>
+                  </div>
+
+                  <div class="toggle-row">
+                    <label class="switch-container">
+                      <input type="checkbox" id="circular-signals">
+                      <span class="switch-slider"></span>
+                    </label>
+                    <span class="toggle-label color-warning">Inject Circular Trading Indicators (Shell detection)</span>
+                  </div>
+                </div>
+
+                <!-- Ingested Transaction Analytics -->
+                <div class="card-white">
+                  <label class="sub-section-label">6. Ingested Transaction Analytics</label>
+                  
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-bounce-rate" class="field-label">EMI/Cheque Bounces (90 Days)</label>
+                      <span class="control-value" id="val-bounce">0 bounces</span>
+                    </div>
+                    <input type="range" id="input-bounce-rate" class="range-slider" min="0" max="10" value="0">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-od-utilization" class="field-label">Overdraft (OD/CC) Limit Utilization</label>
+                      <span class="control-value" id="val-od-util">0%</span>
+                    </div>
+                    <input type="range" id="input-od-utilization" class="range-slider" min="0" max="100" value="0">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-adb-ratio" class="field-label">Average Daily Balance (ADB) Ratio</label>
+                      <span class="control-value" id="val-adb-ratio">15%</span>
+                    </div>
+                    <input type="range" id="input-adb-ratio" class="range-slider" min="0" max="100" value="15">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-customer-concentration" class="field-label">Top 3 Customer Concentration</label>
+                      <span class="control-value" id="val-cust-conc">25%</span>
+                    </div>
+                    <input type="range" id="input-customer-concentration" class="range-slider" min="0" max="100" value="25">
+                  </div>
+
+                  <div class="slider-row">
+                    <div class="control-label-row">
+                      <label for="input-gst-delay" class="field-label">Average GST Filing Latency</label>
+                      <span class="control-value" id="val-gst-delay">0 days delay</span>
+                    </div>
+                    <input type="range" id="input-gst-delay" class="range-slider" min="0" max="30" value="0">
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Submit buttons full width container -->
+            <div style="margin-top: 1.5rem; display: flex; width: 100%;">
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.85rem 2rem; font-size: 0.95rem; font-weight: 600; border-radius: 8px;">
+                Run AI Credit Assessment ➔
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="new_assessment.js"></script>
+</body>
+</html>
