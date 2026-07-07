@@ -84,9 +84,21 @@ def train_model():
         for feature, coef in zip(X.columns, model.coef_[0]):
             print(f"  {feature}: {coef:.4f}")
             
-        # Serialize model
+        # Serialize model containing both model and baselines
+        model_bundle = {
+            "model": model,
+            "feature_cols": list(X.columns),
+            "feature_baselines": X.mean().to_dict(),
+            "coefs": {col: float(coef) for col, coef in zip(X.columns, model.coef_[0])},
+            "intercept": float(model.intercept_[0]),
+            "metrics": {
+                "train_accuracy": float(train_acc),
+                "test_accuracy": float(test_acc),
+                "test_auc": float(auc_score)
+            }
+        }
         save_path = os.path.join(os.path.dirname(__file__), "credit_model.joblib")
-        joblib.dump(model, save_path)
+        joblib.dump(model_bundle, save_path)
         print(f"\nModel successfully saved to: {save_path}")
         
     except Exception as e:

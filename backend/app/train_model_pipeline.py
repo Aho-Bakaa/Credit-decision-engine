@@ -82,8 +82,20 @@ def execute_feature_engineering_pipeline():
     print(f"\nValidation Accuracy: {test_acc:.4f} (Baseline: {accuracy_score(y_test, np.zeros_like(y_test)):.4f})")
     print(f"Validation ROC-AUC:  {auc_score:.4f}")
     
-    # Save Pipeline file
-    joblib.dump(model, MODEL_PATH)
+    # Save Pipeline file containing both model and baselines
+    model_bundle = {
+        "model": model,
+        "feature_cols": list(X_engineered.columns),
+        "feature_baselines": X_engineered.mean().to_dict(),
+        "coefs": {col: float(coef) for col, coef in zip(X_engineered.columns, model.coef_[0])},
+        "intercept": float(model.intercept_[0]),
+        "metrics": {
+            "train_accuracy": float(train_acc),
+            "test_accuracy": float(test_acc),
+            "test_auc": float(auc_score)
+        }
+    }
+    joblib.dump(model_bundle, MODEL_PATH)
     print(f"\nCleaned model pipeline saved to: {MODEL_PATH}")
     print("=== FEATURE ENGINEERING PIPELINE COMPLETED ===")
 

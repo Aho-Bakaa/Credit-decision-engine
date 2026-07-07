@@ -3,15 +3,15 @@ import pandas as pd
 import joblib
 import os
 
-# Expected population baselines for SHAP driver attributions
+# Fallback population baselines for SHAP driver attributions (based on real corporate bankruptcy dataset)
 FEATURE_BASES = {
-    "roa": 0.50,
-    "operating_margin": 0.60,
-    "net_growth_rate": 0.05,
-    "debt_ratio": 0.11,
-    "borrowing_dependency": 0.37,
-    "cash_to_assets": 0.12,
-    "cash_flow_rate": 0.46
+    "roa": 0.5051796332417815,
+    "operating_margin": 0.6079480383703836,
+    "net_growth_rate": 0.4877782499954175,
+    "debt_ratio": 0.11317708497306007,
+    "borrowing_dependency": 0.37465429459872324,
+    "cash_to_assets": 0.12409456048965214,
+    "cash_flow_rate": 0.4674311857796612
 }
 
 class UnderwritingEngine:
@@ -90,38 +90,64 @@ class UnderwritingEngine:
             "borrowing_dependency", "cash_to_assets", "cash_flow_rate"
         ]
         
-        # Mapped Model Parameters (Fallback coefficients from training run)
+        # Real-data trained model fallback coefficients & intercept (from train_model_pipeline.py)
         model_coefs = {
-            "roa": -2.4821,
-            "operating_margin": -1.2462,
-            "net_growth_rate": -1.8234,
-            "debt_ratio": 2.5847,
-            "borrowing_dependency": 1.7612,
-            "cash_to_assets": -2.1843,
-            "cash_flow_rate": -0.8421
+            "roa": -13.02995429,
+            "operating_margin": 1.27354934,
+            "net_growth_rate": -4.29370239,
+            "debt_ratio": 13.96224475,
+            "borrowing_dependency": 3.69849039,
+            "cash_to_assets": -5.23257445,
+            "cash_flow_rate": 0.42061962
         }
-        model_intercept = -1.4820
+        model_intercept = 3.91371959757292
         
-        # Load serialized model if available
+        # Real-data trained model fallback feature baselines
+        feature_bases = {
+            "roa": 0.5051796332417815,
+            "operating_margin": 0.6079480383703836,
+            "net_growth_rate": 0.4877782499954175,
+            "debt_ratio": 0.11317708497306007,
+            "borrowing_dependency": 0.37465429459872324,
+            "cash_to_assets": 0.12409456048965214,
+            "cash_flow_rate": 0.4674311857796612
+        }
+        
+        model_loaded = False
         model_path = os.path.join(os.path.dirname(__file__), "credit_model.joblib")
         if os.path.exists(model_path):
             try:
-                model = joblib.load(model_path)
-                # Form dataframe matching model feature names
-                X_df = pd.DataFrame([[features[col] for col in feature_cols]], columns=feature_cols)
-                pd_val = float(model.predict_proba(X_df)[0, 1])
+                loaded_data = joblib.load(model_path)
                 
-                # Extract actual trained parameters for attributions
-                coef_list = model.coef_[0]
-                for idx, col in enumerate(feature_cols):
-                    model_coefs[col] = coef_list[idx]
-                model_intercept = model.intercept_[0]
+                # Check if it is a dictionary (our custom model bundle)
+                if isinstance(loaded_data, dict):
+                    model = loaded_data.get("model")
+                    # Load feature baselines from bundle if available
+                    if "feature_baselines" in loaded_data:
+                        feature_bases = loaded_data["feature_baselines"]
+                    if "coefs" in loaded_data:
+                        model_coefs = loaded_data["coefs"]
+                    if "intercept" in loaded_data:
+                        model_intercept = loaded_data["intercept"]
+                else:
+                    # It's a raw scikit-learn model object
+                    model = loaded_data
+                
+                # Verify we have a model object to make predictions
+                if model is not None:
+                    X_df = pd.DataFrame([[features[col] for col in feature_cols]], columns=feature_cols)
+                    pd_val = float(model.predict_proba(X_df)[0, 1])
+                    
+                    # Update coefficients and intercept from model
+                    coef_list = model.coef_[0]
+                    for idx, col in enumerate(feature_cols):
+                        model_coefs[col] = coef_list[idx]
+                    model_intercept = model.intercept_[0]
+                    model_loaded = True
             except Exception as e:
-                # Fallback to hardcoded trained coefficients if load fails
-                print(f"Error loading model: {e}. Using fallback weights.")
-                z = model_intercept + sum(model_coefs[col] * features[col] for col in feature_cols)
-                pd_val = 1.0 / (1.0 + np.exp(-z))
-        else:
+                print(f"Error loading model from {model_path}: {e}. Using fallback weights.")
+                
+        if not model_loaded:
             # Mathematical evaluation
             z = model_intercept + sum(model_coefs[col] * features[col] for col in feature_cols)
             pd_val = 1.0 / (1.0 + np.exp(-z))
@@ -159,7 +185,7 @@ class UnderwritingEngine:
 
         for col in feature_cols:
             val = features[col]
-            baseline = FEATURE_BASES[col]
+            baseline = feature_bases[col]
             coef = model_coefs[col]
             
             # Reversing sign so positive output indicates positive credit contribution
